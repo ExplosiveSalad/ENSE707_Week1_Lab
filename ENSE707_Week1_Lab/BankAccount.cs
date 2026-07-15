@@ -25,8 +25,20 @@ namespace ENSE707_Week1_Lab
         }
         public bool Withdraw(decimal amount)
         {
-            Balance = Balance - amount;
-            return true;
+            if (amount < 0)
+            {
+                throw new InvalidOperationException("Withdrawal amount cannot be negative.");
+            }
+            if (amount > Balance)
+            {
+                Console.WriteLine("Cannot withdraw more than the current balance.");
+                return false;
+            }
+            else
+            {
+                Balance = Balance - amount;
+                return true;
+            }
         }
         public decimal CalculateTransationFee(decimal amount)
         {
